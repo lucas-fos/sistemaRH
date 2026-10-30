@@ -7,13 +7,22 @@ import { FormularioFuncionarios } from './components/formulario-funcionarios/for
 import { Enderecos } from './components/enderecos/enderecos';
 import { Contatos } from './components/contatos/contatos';
 
+import { authGuard } from './guards/auth-guard';
+
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'cadastro', component: Cadastro },
-  { path: 'funcionarios', component: ListaFuncionarios },
-  { path: 'funcionarios/novo', component: FormularioFuncionarios },
-  { path: 'enderecos', component: Enderecos },
-  { path: 'contatos', component: Contatos },
+
+  {
+    path: '',
+    canActivateChild: [authGuard],
+    children: [
+      { path: 'lista-funcionarios', component: ListaFuncionarios },
+      { path: 'formulario-funcionarios', component: FormularioFuncionarios },
+      { path: 'enderecos', component: Enderecos },
+      { path: 'contatos', component: Contatos }
+    ]
+  },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }

@@ -1,48 +1,66 @@
+<div class="max-w-md mx-auto mt-10 bg-white p-8 rounded-xl shadow-lg">
 
-<div class="flex justify-center items-center min-h-[70vh]">
+  <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">
+    Login - Sistema RH
+  </h2>
 
-  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
+  <form [formGroup]="form" (ngSubmit)="entrar()">
 
-    <h2 class="text-3xl font-bold text-center text-blue-900 mb-6">
-      Login
-    </h2>
+    <div class="mb-4">
+      <label class="block mb-2 font-semibold">E-mail</label>
 
-    <form class="space-y-4">
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Digite seu e-mail"
+        class="w-full border rounded-lg p-3"
+      />
 
-      <div>
-        <label class="block font-semibold mb-1">E-mail</label>
-        <input
-          type="email"
-          placeholder="Digite seu e-mail"
-          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <p class="text-red-600 text-sm mt-1">
+          Informe um e-mail válido.
+        </p>
+      }
+    </div>
 
-      <div>
-        <label class="block font-semibold mb-1">Senha</label>
-        <input
-          type="password"
-          placeholder="Digite sua senha"
-          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+    <div class="mb-4">
+      <label class="block mb-2 font-semibold">Senha</label>
 
-      <button
-        type="button"
-        class="w-full bg-blue-900 text-white p-3 rounded-lg font-bold hover:bg-blue-800"
-      >
-        Entrar
-      </button>
+      <input
+        type="password"
+        formControlName="senha"
+        placeholder="Digite sua senha"
+        class="w-full border rounded-lg p-3"
+      />
 
-    </form>
+      @if (form.controls.senha.touched && form.controls.senha.invalid) {
+        <p class="text-red-600 text-sm mt-1">
+          A senha é obrigatória.
+        </p>
+      }
+    </div>
 
-    <p class="text-center mt-5">
-      Ainda não possui cadastro?
-      <a routerLink="/cadastro" class="text-blue-700 font-bold hover:underline">
-        Cadastre-se
-      </a>
-    </p>
+    @if (erro()) {
+      <p class="text-red-600 text-center mb-4">
+        {{ erro() }}
+      </p>
+    }
 
-  </div>
+    <button
+      type="submit"
+      [disabled]="carregando()"
+      class="w-full bg-blue-900 text-white p-3 rounded-lg hover:bg-blue-800 disabled:opacity-50"
+    >
+      {{ carregando() ? 'Entrando...' : 'Entrar' }}
+    </button>
+
+  </form>
+
+  <p class="text-center mt-5">
+    Não tem uma conta?
+    <a routerLink="/cadastro" class="text-blue-700 font-semibold">
+      Cadastre-se
+    </a>
+  </p>
 
 </div>

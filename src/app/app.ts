@@ -1,6 +1,7 @@
-
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
+
+  readonly auth = inject(AuthService);
+
 }

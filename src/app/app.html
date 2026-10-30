@@ -1,4 +1,3 @@
-
 <div class="min-h-screen bg-gray-100">
 
   <nav class="bg-blue-900 text-white p-4 shadow-lg">
@@ -9,14 +8,37 @@
       </h1>
 
       <div class="flex flex-wrap gap-4">
-        <a routerLink="/login" class="hover:text-blue-300">Login</a>
-        <a routerLink="/cadastro" class="hover:text-blue-300">Cadastro</a>
-        <a routerLink="/funcionarios" class="hover:text-blue-300">Funcionários</a>
-        <a routerLink="/funcionarios/novo" class="hover:text-blue-300">Novo Funcionário</a>
-        <a routerLink="/enderecos" class="hover:text-blue-300">Endereços</a>
-        <a routerLink="/contatos" class="hover:text-blue-300">Contatos</a>
-      </div>
 
+        @if (auth.estaLogado()) {
+          <a routerLink="/lista-funcionarios" class="hover:text-blue-300">
+            Funcionários
+          </a>
+
+          <a routerLink="/formulario-funcionarios" class="hover:text-blue-300">
+            Novo Funcionário
+          </a>
+
+          <a routerLink="/enderecos" class="hover:text-blue-300">
+            Endereços
+          </a>
+
+          <a routerLink="/contatos" class="hover:text-blue-300">
+            Contatos
+          </a>
+
+          <button
+            type="button"
+            (click)="auth.logout()"
+            class="bg-red-600 px-4 py-2 rounded hover:bg-red-700"
+          >
+            Sair
+          </button>
+        } @else {
+          <a routerLink="/login" class="hover:text-blue-300">Login</a>
+          <a routerLink="/cadastro" class="hover:text-blue-300">Cadastro</a>
+        }
+
+      </div>
     </div>
   </nav>
 
