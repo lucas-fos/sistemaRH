@@ -1,0 +1,66 @@
+
+<div class="flex justify-center items-center min-h-[70vh] py-8">
+
+  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md">
+
+    <h2 class="text-3xl font-bold text-center text-blue-900 mb-6">
+      Criar Conta
+    </h2>
+
+    <form class="space-y-4">
+
+      <div>
+        <label class="block font-semibold mb-1">Nome</label>
+        <input
+          type="text"
+          placeholder="Digite seu nome"
+          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">E-mail</label>
+        <input
+          type="email"
+          placeholder="Digite seu e-mail"
+          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Senha</label>
+        <input
+          type="password"
+          placeholder="Crie uma senha"
+          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Confirmar senha</label>
+        <input
+          type="password"
+          placeholder="Confirme sua senha"
+          class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="w-full bg-blue-900 text-white p-3 rounded-lg font-bold hover:bg-blue-800"
+      >
+        Cadastrar
+      </button>
+
+    </form>
+
+    <p class="text-center mt-5">
+      Já possui cadastro?
+      <a routerLink="/login" class="text-blue-700 font-bold hover:underline">
+        Fazer login
+      </a>
+    </p>
+
+  </div>
+
+</div>
