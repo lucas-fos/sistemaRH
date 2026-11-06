@@ -1,5 +1,131 @@
-<div class="p-6">
-  <h2 class="text-3xl font-bold text-blue-900">
+
+<main class="mx-auto max-w-6xl p-6">
+
+  <h1 class="mb-6 text-3xl font-bold text-blue-900">
     Lista de Funcionários
-  </h2>
-</div>
+  </h1>
+
+  @if (carregando()) {
+
+    <p class="text-slate-600">
+      Carregando colaboradores...
+    </p>
+
+  } @else if (erro()) {
+
+    <p class="text-red-600 font-semibold">
+      {{ erro() }}
+    </p>
+
+  } @else {
+
+    @if (mensagemExclusao()) {
+      <p class="mb-4 font-semibold text-blue-700">
+        {{ mensagemExclusao() }}
+      </p>
+    }
+
+    <div class="overflow-x-auto rounded-lg border border-slate-200">
+
+      <table class="w-full text-left text-sm">
+
+        <thead class="bg-blue-900 text-white">
+          <tr>
+            <th class="p-3">ID</th>
+            <th class="p-3">Nome</th>
+            <th class="p-3">E-mail</th>
+            <th class="p-3">Nascimento</th>
+            <th class="p-3">Contatos</th>
+            <th class="p-3">Endereços</th>
+            <th class="p-3">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (colaborador of colaboradores(); track colaborador.id) {
+
+            <tr class="border-t border-slate-200 hover:bg-slate-50">
+
+              <td class="p-3">{{ colaborador.id }}</td>
+
+              <td class="p-3 font-medium">
+                {{ colaborador.nome }}
+              </td>
+
+              <td class="p-3">
+                {{ colaborador.email }}
+              </td>
+
+              <td class="p-3">
+                {{ colaborador.dataNascimento ?? '—' }}
+              </td>
+
+              <td class="p-3">
+                {{ colaborador.contatos.length }}
+              </td>
+
+              <td class="p-3">
+                {{ colaborador.enderecos.length }}
+              </td>
+
+              <td class="p-3">
+                <div class="flex gap-2">
+
+                  <!-- Editar -->
+                  <a
+                    routerLink="/formulario-funcionarios"
+                    class="cursor-pointer rounded bg-blue-600 px-3 py-1 text-white"
+                    title="Editar">
+                    ✏️
+                  </a>
+
+                  <!-- Excluir -->
+                  <button
+                    type="button"
+                    (click)="excluir(colaborador.id)"
+                    class="rounded bg-red-600 px-3 py-1 text-white"
+                    title="Excluir">
+                    🗑️
+                  </button>
+
+                  <!-- Contatos -->
+                  <a
+                    routerLink="/contatos"
+                    class="cursor-pointer rounded bg-green-600 px-3 py-1 text-white"
+                    title="Contatos">
+                    ☎️
+                  </a>
+
+                  <!-- Endereços -->
+                  <a
+                    routerLink="/enderecos"
+                    class="cursor-pointer rounded bg-orange-500 px-3 py-1 text-white"
+                    title="Endereços">
+                    📍
+                  </a>
+
+                </div>
+              </td>
+
+            </tr>
+
+          } @empty {
+
+            <tr>
+              <td colspan="7" class="p-4 text-center text-slate-600">
+                Nenhum colaborador encontrado.
+              </td>
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  }
+
+</main>
